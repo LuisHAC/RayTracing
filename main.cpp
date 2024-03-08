@@ -1,6 +1,7 @@
-#include "common.h"
 #include "camera.h"
+#include "color.h"
 #include "hittable_list.h"
+#include "material.h"
 #include "sphere.h"
 
 int main() {
