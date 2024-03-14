@@ -1,12 +1,12 @@
 #pragma once
 
+#include "common.h"
+
 #include "hittable.h"
 
 #include <memory>
 #include <vector>
 
-using std::shared_ptr;
-using std::make_shared;
 
 class hittable_list : public hittable {
 public:
@@ -23,7 +23,7 @@ public:
 
     bool hit(const ray& r, interval ray_t, hit_record& rec) const override {
         hit_record temp_rec;
-        bool hit_anything = false;
+        auto hit_anything = false;
         auto closest_so_far = ray_t.max;
 
         for (const auto& object : objects) {

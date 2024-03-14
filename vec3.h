@@ -4,6 +4,7 @@
 #include <iostream>
 
 using std::sqrt;
+using std::fabs;
 
 class vec3 {
 public:
@@ -95,9 +96,6 @@ inline vec3 operator/(vec3 v, double t) {
     return (1 / t) * v;
 }
 
-/// <summary>
-/// Dot product of 2 vectors.
-/// </summary>
 inline double dot(const vec3& u, const vec3& v) {
     return u.e[0] * v.e[0]
         + u.e[1] * v.e[1]
@@ -112,6 +110,14 @@ inline vec3 cross(const vec3& u, const vec3& v) {
 
 inline vec3 unit_vector(vec3 v) {
     return v / v.length();
+}
+
+inline vec3 random_in_unit_disk() {
+    while (true) {
+        vec3 p = vec3(random_double(-1, 1), random_double(-1, 1), 0);
+        if (p.length_squared() < 1)
+            return p;
+    }
 }
 
 inline vec3 random_in_unit_sphere() {
@@ -134,7 +140,7 @@ inline vec3 random_on_hemisphere(const vec3& normal) {
         return -on_unit_sphere;
 }
 
-vec3 reflect(const vec3& v, const vec3& n) {
+inline vec3 reflect(const vec3& v, const vec3& n) {
     return v - 2 * dot(v, n) * n;
 }
 
